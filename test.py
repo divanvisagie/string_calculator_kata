@@ -4,21 +4,18 @@ import os
 import re
 
 def get_delimiters(input):
-    delims = []
+    delims = [',']
     replace = ''
     for match in re.findall(r'(//)(.*)(\n)', input): # Will not run if blank
         (start, delim_token, end) = match
         replace = f'{start}{delim_token}{end}'
+        delims = []
 
         for i in re.split(r'\[|\]',delim_token):
             if i != "":
                 delims.append(i)
 
-        # delims.append(delim_token)
-
-    if len(delims) > 0:
-        return (delims, replace)
-    return ([','], '')
+    return (delims, replace)
 
 def add(input):
     if input == "":
